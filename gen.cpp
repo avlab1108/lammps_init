@@ -121,18 +121,18 @@ const double MINLEN=1.3;
 const double PARTSIZE = 1;
 int main()
 {
-	int N = 500;
-	srand(time(0));
+	int N = 500; // Chain length
+	srand(time(0)); //first generate chain with same length in chain.c, then generate coordinates and replace simulation box sizes and atom coordinates
 	FILE *f = fopen("conformation.txt","w");
 	Vector chain[3000];
-	const int Bounds[3] = {2000,2000,2000};
-	Vector b0(0,0,0); Vector b1(2000,2000,2000);
+	const int Bounds[3] = {1000,1000,1000}; 
+	Vector b0(0,0,0); Vector b1(1000,1000,1000); // bounds of simulation cell
 	chain[0].x[0] = Bounds[0]/2;
 	chain[0].x[1] = Bounds[1]/2;
-	chain[0].x[2] = Bounds[2]/2;
+	chain[0].x[2] = Bounds[2]/2; //generating chain from the middle of the cell to get good movies
 	Vector temp;
 	bool restart = true;
-	fprintf(f,"\t%i\t%i\t%i\t%lf %lf %lf\n",1,1,1,chain[0].x[0], chain[0].x[1], chain[0].x[2]);
+	fprintf(f,"\t%i\t%i\t%i\t%lf %lf %lf\n",1,1,1,chain[0].x[0], chain[0].x[1], chain[0].x[2]); 
 	for(int i = 1; i < N; i++)
 	{
 	    restart = true;
